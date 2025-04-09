@@ -1,0 +1,243 @@
+{
+    "title": "STM32U3 dedicated training 2025",
+    "githubLoc": "https://raw.githubusercontent.com/stm32U0_training_materials/master",
+    "options": {
+      "allowMenu": true,
+      "allowTagSelect": false
+    },
+    "filesToLoadArr": [
+      {
+        "name": "CubeIDE",
+        "path": "/stop3",
+        "file": "lcd_cubeide.md"
+      },
+      {
+        "name": "CubeMX",
+        "path": "/stop3",
+        "file": "lcd_cubemx.md"
+      },
+      {
+        "name": "Create Project",
+        "path": "/stop3",
+        "file": "stop3_project.md"
+      },
+      {
+        "name": "Introduction",
+        "path": "/stop3",
+        "file": "stop3_intro.md"
+      },
+      {
+        "name": "CubeIDE",
+        "path": "/lpuart",
+        "file": "lpuart_cubeide.md"
+      },
+      {
+        "name": "CubeMX",
+        "path": "/lpuart",
+        "file": "lpuart_cubemx.md"
+      },
+      {
+        "name": "Create Project",
+        "path": "/lpuart",
+        "file": "lpuart_project.md"
+      },
+      {
+        "name": "Introduction",
+        "path": "/lpuart",
+        "file": "lpuart_intro.md"
+      },
+      {
+        "name": "Introduction",
+        "path": "/standby",
+        "file": "SB_intro.md"
+      },
+      {
+        "name": "CubeMX",
+        "path": "/standby",
+        "file": "SB_cubemx.md"
+      },
+      {
+        "name": "CubeIDE",
+        "path": "/standby",
+        "file": "SB_cubeide.md"
+      },
+      {
+        "name": "Create Project",
+        "path": "/standby",
+        "file": "SB_project.md"
+      },
+      {
+        "name": "Measure Consumption",
+        "path": "/standby",
+        "file": "SB_consumption.md"
+      },
+      {
+        "name": "ADC Theory",
+        "path": "/adc",
+        "file": "adc_theory.md"
+      },
+      {
+        "name": "ADC Basic Example",
+        "path": "/adc",
+        "file": "adc_handson_basic.md"
+      },
+      {
+        "name": "ADC Scan Example",
+        "path": "/adc",
+        "file": "adc_handson_scan.md"
+      },
+      {
+        "name": "ADC DMA Example",
+        "path": "/adc",
+        "file": "adc_handson_dma_circular.md"
+      },
+      {
+        "name": "Introduction",
+        "path": "/shutdown",
+        "file": "SD_intro.md"
+      },
+      {
+        "name": "CubeMX",
+        "path": "/shutdown",
+        "file": "SD_cubemx.md"
+      },
+      {
+        "name": "CubeIDE",
+        "path": "/shutdown",
+        "file": "SD_cubeide.md"
+      }
+    ],
+    "menuStructure": [
+{
+      "type": "Folder",
+      "name": "STOP3 w/ RTC HANDS-ON",
+      "children": [
+        {
+          "type": "File",
+          "name": "1. Introduction",
+          "file": "stop3_intro.md"
+        },
+        {
+          "type": "File",
+          "name": "2. Create Project",
+          "file": "stop3_project.md"
+        },
+        {
+          "type": "File",
+          "name": "3. CubeMX",
+          "file": "stop3_cubemx.md"
+        },
+
+        {
+          "type": "File",
+          "name": "5. CubeIDE",
+          "file": "stop3_cubeide.md"
+        }
+      ]
+    },
+    {
+      "type": "Folder",
+      "name": "ADC HANDS-ON",
+      "children": [
+        {
+          "type": "File",
+          "name": "Theory Basics",
+          "file": "adc_theory.md"
+        },
+        {
+          "type": "File",
+          "name": "1. ADC Basic Example",
+          "file": "adc_handson_basic.md"
+        },
+        {
+          "type": "File",
+          "name": "2. ADC Scan Example",
+          "file": "adc_handson_scan.md"
+        },
+        {
+          "type": "File",
+          "name": "3. ADC with DMA Example",
+          "file": "adc_handson_dma_circular.md"
+        }
+      ]
+    },
+    {
+      "type": "Folder",
+      "name": "LPUART + STOP2 HANDS-ON",
+      "children": [
+        {
+          "type": "File",
+          "name": "1. Introduction",
+          "file": "lpuart_intro.md"
+        },
+        {
+          "type": "File",
+          "name": "2. Create Project",
+          "file": "lpuart_project.md"
+        },
+        {
+          "type": "File",
+          "name": "3. CubeMX",
+          "file": "lpuart_cubemx.md"
+        },
+        {
+          "type": "File",
+          "name": "4. CubeIDE",
+          "file": "lpuart_cubeide.md"
+        }
+      ]
+    },
+    {
+      "type": "Folder",
+      "name": "STANDBY HANDS-ON",
+      "children": [
+        {
+          "type": "File",
+          "name": "1. Introduction",
+          "file": "SB_intro.md"
+        },
+        {
+          "type": "File",
+          "name": "2. Create Project",
+          "file": "SB_project.md"
+        },
+        {
+          "type": "File",
+          "name": "3. CubeMX",
+          "file": "SB_cubemx.md"
+        },
+        {
+          "type": "File",
+          "name": "4. CubeIDE",
+          "file": "SB_cubeide.md"
+        },
+        {
+          "type": "File",
+          "name": "5. Measure Consumption",
+          "file": "SB_consumption.md"
+        }
+      ]
+    },
+    {
+      "type": "Folder",
+      "name": "SHUTDOWN HANDS-ON",
+      "children": [
+        {
+          "type": "File",
+          "name": "1. Introduction",
+          "file": "SD_intro.md"
+        },
+        {
+          "type": "File",
+          "name": "2. CubeMX",
+          "file": "SD_cubemx.md"
+        },
+        {
+          "type": "File",
+          "name": "3. CubeIDE",
+          "file": "SD_cubeide.md"
+        }
+      ]
+    }
+    ]
+  }
