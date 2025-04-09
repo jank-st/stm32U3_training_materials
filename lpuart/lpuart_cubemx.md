@@ -30,21 +30,21 @@ Note that **LSESYSEN bit in BDCR** must be enabled as well (missing in RM descri
 ![image](./img/RTC.png)
 
 # Low Power UART
-- LPUART1 is connecetd to STlink via PA2/3 pins and acts as Virtual Comport
+- LPUART1 is connecetd to STlink via PA9/10 pins and acts as Virtual Comport
 
 - Select **LPUART1** instance
   
 - Configure `Asynchronous mode`
 
-- Remap TX/RX to `PA2/3` *(hold CTRL + left mouse click)*
+- Remap TX/RX to `PA9/10` *(hold CTRL + left mouse click)*
 
-- `Baudrate` = 9600​
+- `Baudrate` = 115200 (or 9600​)
 
 - `Enable FIFO mode`​
   - TxFIFO Th. = Empty​
   - RXFIFO Th. = Full
 
-- Enable `USART3 + LPUART1 global interrupt` under NVIC tab
+- Enable `LPUART1 global interrupt` under NVIC tab
 
 ![image](./img/LPUART.png)
 
@@ -53,7 +53,7 @@ Note that **LSESYSEN bit in BDCR** must be enabled as well (missing in RM descri
   
 - Select **LSE** as source for `RTC/LCD` to be able active in down to Stop2 mode
 
-- Select **LSE** as source for `LPUART1`
+- Select 3MHz **MSIK/8** as source for `LPUART1`
 <p> </p>
 
 ![image](./img/clock.png)
