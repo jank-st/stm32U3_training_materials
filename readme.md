@@ -1,10 +1,10 @@
-# STM32U0 dedicated training repository
+# STM32U3 dedicated training repository
 
-This is repository with STM32U0 hands on cheat sheets and other materials focusing on:
+This is repository with STM32U3 hands on cheat sheets and other materials focusing on:
 
-- Liquid Crystal Display Controller
-- ADC acquisition with DMA data management
-- Low power Standby example and PU/PD retention
-- Simply Shut down example
+- STOP3 with RTC wake up source
+- ADC acquisition with LPUART data transmission 
+- SPI operation in autonomous mode under STOP1 mode
+- PWM generation with respect to low power mode
 
 [Click to go to page](https://rristm.github.io/tomas_materials_v2/jank-st/stm32U3_training_materials/master)
