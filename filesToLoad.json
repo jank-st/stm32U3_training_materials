@@ -127,10 +127,9 @@
           "name": "3. CubeMX",
           "file": "stop3_cubemx.md"
         },
-
         {
           "type": "File",
-          "name": "5. CubeIDE",
+          "name": "4. CubeIDE",
           "file": "stop3_cubeide.md"
         }
       ]
@@ -141,23 +140,13 @@
       "children": [
         {
           "type": "File",
-          "name": "Theory Basics",
+          "name": "1. Theory Basics",
           "file": "adc_theory.md"
-        },
-        {
-          "type": "File",
-          "name": "1. ADC Basic Example",
-          "file": "adc_handson_basic.md"
         },
         {
           "type": "File",
           "name": "2. ADC Scan Example",
           "file": "adc_handson_scan.md"
-        },
-        {
-          "type": "File",
-          "name": "3. ADC with DMA Example",
-          "file": "adc_handson_dma_circular.md"
         }
       ]
     },
