@@ -60,21 +60,21 @@ volatile int16_t Temp = 0;
 
 ```c
 HAL_ADC_Start(&hadc1);
-	  HAL_ADC_PollForConversion(&hadc1, 1);
-	  adcVref = HAL_ADC_GetValue(&hadc1);
+HAL_ADC_PollForConversion(&hadc1, 1);
+adcVref = HAL_ADC_GetValue(&hadc1);
 
-	  /*Helper macro to calculate analog reference voltage (Vref+) unit: mVolt */
-	  Vref = __LL_ADC_CALC_VREFANALOG_VOLTAGE(adcVref,LL_ADC_RESOLUTION_12B);
+/*Helper macro to calculate analog reference voltage (Vref+) unit: mVolt */
+Vref = __LL_ADC_CALC_VREFANALOG_VOLTAGE(adcVref,LL_ADC_RESOLUTION_12B);
 
-	  HAL_ADC_PollForConversion(&hadc1, 1);
-	  adcTemp = HAL_ADC_GetValue(&hadc1);
+HAL_ADC_PollForConversion(&hadc1, 1);
+adcTemp = HAL_ADC_GetValue(&hadc1);
 
-	  /*Helper macro to calculate Temperature, unit: degree Celsius */
-	  Temp = __LL_ADC_CALC_TEMPERATURE(Vref, adcTemp, LL_ADC_RESOLUTION_12B);
+/*Helper macro to calculate Temperature, unit: degree Celsius */
+Temp = __LL_ADC_CALC_TEMPERATURE(Vref, adcTemp, LL_ADC_RESOLUTION_12B);
 ```
 
-4. Possible further reduction to put ADC in **DEEP POWER MODE** - negligible effect under Stop 3 and calibration data are lost.
-   
+4. Possible further reduction to put ADC in **DEEP POWER MODE** - no effect under Stop 3 and calibration data are lost.
+  
 ```c
 HAL_ADCEx_EnterADCDeepPowerDownMode(&hadc1);
 ```
