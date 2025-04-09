@@ -9,12 +9,12 @@
       {
         "name": "CubeIDE",
         "path": "/stop3",
-        "file": "lcd_cubeide.md"
+        "file": "stop3_cubeide.md"
       },
       {
         "name": "CubeMX",
         "path": "/stop3",
-        "file": "lcd_cubemx.md"
+        "file": "stop3_cubemx.md"
       },
       {
         "name": "Create Project",
