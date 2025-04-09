@@ -1,6 +1,6 @@
 {
     "title": "STM32U3 dedicated training 2025",
-    "githubLoc": "https://raw.githubusercontent.com/stm32U0_training_materials/master",
+    "githubLoc": "https://raw.githubusercontent.com/stm32U3_training_materials/master",
     "options": {
       "allowMenu": true,
       "allowTagSelect": false
