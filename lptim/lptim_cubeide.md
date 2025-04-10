@@ -72,6 +72,9 @@ HAL_LPTIM_PWM_Start(&hlptim1, LPTIM_CHANNEL_1);
 
 Now we can measure consumption to check PWM activity PC1 (36 pin of CN7) to PA5 (11 pin of CN10)
 
-expected consumption ** uA**
+![image](./img/wiring.png)
 
+Expected consumption ** ~6 uA** when LED is not connected and **~ uA** when LED is connected deu to driving .
+
+![image](./img/consumption.png)
 
