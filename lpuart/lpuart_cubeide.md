@@ -25,7 +25,6 @@ Change LSEState in `SystemClock_Config()` function in **main.c** file:
 Copy paste following snippet in `USER CODE BEGIN Includes` section in **main.c** file:
 
 ```c
-#include "stm32u3xx_ll_gpio.h"
 #include "stm32u3xx_ll_lpuart.h"
 #include "stdio.h"
 ```
@@ -76,7 +75,7 @@ HAL_UART_Transmit(&hlpuart1, (uint8_t*)TXbuffer, length, 100);
 ```
 <p> </p>
 
-Now open ComPort Terminal connect to STLink Virtual Comport *(115200 baudrate, 8 bits, no Parity, 1 Stop bit)*
+Now open ComPort Terminal connect to STLink Virtual Comport *115200 baudrate, 8 bits, no Parity, 1 Stop bit*
 
 <p> </p>
 
@@ -85,90 +84,39 @@ Now open ComPort Terminal connect to STLink Virtual Comport *(115200 baudrate, 8
 <p> </p>
 
 ## TX in FIFO mode
+Return to CubeMX and change few parameter for LPUART1 instance:
+- `Baudrate` = 9600​ bits/s
+- LPUART1 kernel clock to *LSE*
+
+<p> </p>
+
+![image](./img/lse_clock.png)
+
+<p> </p>
+Regenerate code.
+
 Delete or comment HAL_UART_Transmit(..) function.
 
-Copy paste following snippet in `while(1) loop` section in **main.c** file:
+Open ComPort Terminal connect to STLink Virtual Comport and change *115200 baudrate*, 8 bits, no Parity, 1 Stop bit
+
+Copy paste following snippet in `while(1) loop` section before `EnterSTOP3Mode` in **main.c** file:
 
 ```c
-	  /*TX data w/ FIFO
-	   * expected time spend in Run mode <1ms (170us measured by scope)
-	   * */
-	  uint32_t i = 0;
-	  while(__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_TXFNF))
-	  {
-		  LPUART1->TDR = (uint8_t)bufferTX[i];
-		  i++;
-	  }
-```
-
-## RX in FIFO mode
-
-Enable interrupt for RXFIFO threshold.
-
-Copy paste following snippet in `USER CODE BEGIN 2` section in **main.c** file:
-
-```c
-/* Enable IT for RXFIFO reaches Threshold = 8 bytes in our case*/
-__HAL_UART_ENABLE_IT(&hlpuart1, UART_IT_RXFT);
-```
-<p> </p>
-
-Delete or comment `HAL_UART_IRQHandler(&hlpuart1)` function in ISR `USART3_LPUART1_IRQHandler(void)` section in **stm32u0xx_it.c** file:
-
-<p> </p>
-
-Copy paste following snippet in `/* USER CODE BEGIN USART3_LPUART1_IRQn 1 */` section in **stm32u0xx_it.c** file:
-
-```c
-	uint32_t i = 0;
-	if(__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXFT))
-	{
-		__HAL_UART_CLEAR_FLAG(&hlpuart1, UART_FLAG_RXFT);
-
-		while(__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_RXFNE))
-		{
-			bufferRX[i] = LPUART1->RDR;
-			i++;
-		}
-	}
-```
-
-# LPUART acitivity in Low Layer library
-## RX in FIFO mode
-
-Copy & paste LL drivers in project folder  **stm32u0xx_ll_lpuart.c** and **stm32u0xx_ll_lpuart.h**
-
-Copy paste following snippet in `USER CODE BEGIN Includes` section in **main.h** file:
-
-```c
-#include "stm32u0xx_ll_lpuart.h"
-```
-<br />
-
-Enable interrupt for RXFIFO threshold.
-
-Copy paste following snippet in `USER CODE BEGIN 2` section in **main.c** file:
-
-```c
-/* Enable IT for RXFIFO reaches Threshold = 8 bytes in our case*/
-LL_LPUART_EnableIT_RXFT(LPUART1);
-```
-<p> </p>
-
-Delete or comment `HAL_UART_IRQHandler(&hlpuart1)` function in ISR `USART3_LPUART1_IRQHandler(void)` section in **stm32u0xx_it.c** file:
-
-<p> </p>
-
-Copy paste following snippet in `/* USER CODE BEGIN USART3_LPUART1_IRQn 1 */` section in **stm32u0xx_it.c** file:
-
-```c
-uint32_t i = 0;
-	if(LL_LPUART_IsActiveFlag_RXFT(LPUART1))
-	{
-		while(LL_LPUART_IsActiveFlag_RXNE_RXFNE(LPUART1))
-		{
-			bufferRX[i] = LL_LPUART_ReceiveData8(LPUART1);
-			i++;
-		}
-	}
+/* Enable MCU wake-up by LPUART */
+HAL_UARTEx_EnableStopMode(&hlpuart1);
+	 
+/* Enable IT for Transfer Complete = 8 bytes in our case*/
+LL_LPUART_ClearFlag_TC(LPUART1);
+LL_LPUART_EnableIT_TC(LPUART1);
+	 
+/*TX data w/ FIFO */
+/* Convert integers to string with comma and carriage return */
+length = sprintf(TXbuffer, "%d,%d\r", Vref, Temp);
+i = 0;
+while(__HAL_UART_GET_FLAG(&hlpuart1, UART_FLAG_TXFNF))
+ 	 {
+ 		 LPUART1->TDR = (uint8_t)TXbuffer[i];
+ 		 i++;
+ 	 }
+HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP2, PWR_STOPENTRY_WFI);
 ```
