@@ -24,7 +24,6 @@ MEMORY
 
 e.g. `uint32_t variable __attribute__((section(".sram2")));`
 
-
 # Initialization
 
 ## System Initialization
@@ -55,35 +54,24 @@ HAL_PWREx_DisableRAMsContentStopRetention(PWR_PKA_STOP_RETENTION);
 
 /*Put full SRAM1 in power down mode*/
 HAL_PWREx_EnableRAMsPowerDown(PWR_SRAM1_POWERDOWN); // reduction - 500nA
-
-/* Configure RTC wake up source for STop3 mode - RM Table 78. PWR wake-up source selection IN*/
-HAL_PWR_EnableWakeUpLine(PWR_WAKEUP_LINE7, PWR_WAKEUP_SELECT_3, PWR_WAKEUP_POLARITY_HIGH);
 ```
 
-# STOPx mode
-Enter in Stop3 mode by **__WFI()** instruction, clear all pending flags verify consumption and periodic wakeup sequence. Perform power on reset if target consumption is not achieved.
+# Application
 
-Copy paste following snippet in `while(1) loop` section in **main.c** file:
+Generate PWM signal and enter in Stop 2 mode 
+
+Copy paste following snippet in `USER CODE BEGIN 2` section in **main.c** file:
 
 ```c
-/*Clear all wakeup source flags*/
-__HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
+/* Run PWM signal on PC1 pin*/
+HAL_LPTIM_PWM_Start(&hlptim1, LPTIM_CHANNEL_1);
 
-/* Enter STOP 3 mode */
-HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
+/* Enter STOP 2 mode */
+  HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP2, PWR_STOPENTRY_WFI);
 ```
 
-## Debug in STOPx mode
-In case when debug in LP modes is required. Due to fact bus is clocked the internal SysTick must be suspend - 1 ms interrupt would cause exit from Stop mode.
+Now we can measure consumption to check PWM activity PC1 (36 pin of CN7) to PA5 (11 pin of CN10)
 
-Copy paste following snippet in `while(1) loop` section in **main.c** file:
+expected consumption ** uA**
 
-```c
-HAL_SuspendTick();
-/*Clear all wakeup source flags*/
-__HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
 
-/* Enter STOP 3 mode */
-HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
-HAL_ResumeTick();
-```

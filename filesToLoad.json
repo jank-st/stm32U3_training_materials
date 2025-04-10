@@ -94,17 +94,17 @@
       {
         "name": "Introduction",
         "path": "/shutdown",
-        "file": "SD_intro.md"
+        "file": "lptim_intro.md"
       },
       {
         "name": "CubeMX",
         "path": "/shutdown",
-        "file": "SD_cubemx.md"
+        "file": "lptim_cubemx.md"
       },
       {
         "name": "CubeIDE",
         "path": "/shutdown",
-        "file": "SD_cubeide.md"
+        "file": "lptim_cubeide.md"
       }
     ],
     "menuStructure": [
@@ -209,22 +209,22 @@
     },
     {
       "type": "Folder",
-      "name": "SHUTDOWN HANDS-ON",
+      "name": "LPTIM PWM GENERATION HANDS-ON",
       "children": [
         {
           "type": "File",
           "name": "1. Introduction",
-          "file": "SD_intro.md"
+          "file": "lptim_intro.md"
         },
         {
           "type": "File",
           "name": "2. CubeMX",
-          "file": "SD_cubemx.md"
+          "file": "lptim_cubemx.md"
         },
         {
           "type": "File",
           "name": "3. CubeIDE",
-          "file": "SD_cubeide.md"
+          "file": "lptim_cubeide.md"
         }
       ]
     }

@@ -13,8 +13,6 @@ Presentation
 To clock RTC and LPUART by external low speed crystal, the LSE must be activated within RTC configuration.
 <p> </p>
 
-Note that **LSESYSEN bit in BDCR** must be enabled as well (missing in RM description), otherwise LSE is not clocked. It's already enabled by default in `HAL_RCC_OscConfig()` function call.
-
 - Select **RTC** instance
   
 - Tick `Activate Clock Source`
