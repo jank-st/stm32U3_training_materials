@@ -49,7 +49,7 @@ Note that **LSESYSEN bit in BDCR** must be enabled as well (missing in RM descri
 ![image](./img/LPUART.png)
 
 # Clock Configuration
-- Change **MSI** to `1 MHz` as `System Clock`
+- Change **MSIS** to `96/2 MHz` as `System Clock`
   
 - Select **LSE** as source for `RTC/LCD` to be able active in down to Stop2 mode
 
