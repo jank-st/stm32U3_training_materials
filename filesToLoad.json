@@ -93,17 +93,17 @@
       },
       {
         "name": "Introduction",
-        "path": "/shutdown",
+        "path": "/lptim",
         "file": "lptim_intro.md"
       },
       {
         "name": "CubeMX",
-        "path": "/shutdown",
+        "path": "/lptim",
         "file": "lptim_cubemx.md"
       },
       {
         "name": "CubeIDE",
-        "path": "/shutdown",
+        "path": "/lptim",
         "file": "lptim_cubeide.md"
       }
     ],
@@ -209,7 +209,7 @@
     },
     {
       "type": "Folder",
-      "name": "LPTIM PWM GENERATION HANDS-ON",
+      "name": "LPTIM PWM HANDS-ON",
       "children": [
         {
           "type": "File",
