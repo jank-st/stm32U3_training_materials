@@ -24,10 +24,12 @@ This will enable the scan mode. Now our sequence have 3 items
 To prevent of data overrun we enable `Low Power Auto Wait`.
 
 7. set `Low Power Auto Wait` to **ENABLE**
-![alt text](./img/config.png)
+
+![image](./img/config.png)
    
 8.  ADC kernel clock can be reduced to **24 MHZ**
-![alt text](./img/clkconfig.png) 
+   
+![image](./img/clkconfig.png) 
    
 9.  Generate code
 
@@ -57,6 +59,9 @@ volatile int16_t Temp = 0;
 3. To read the ADC for new values, **add** the following code in the *USER CODE WHILE* section:
    with help of macros to convert actual VDDA/Vref+ and temperature thanks to stored values from production
 
+![image](./img/vref.png)
+
+![image](./img/temp.png)
 
 ```c
 HAL_ADC_Start(&hadc1);
