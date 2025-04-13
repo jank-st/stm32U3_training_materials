@@ -83,6 +83,7 @@ Now data are transferred. Verify them by user button push connected to exti line
 Called fucntion in exti callback compare known transmit buffer with received one. If all bytes matches USER LED switches on.
 
 Copy paste following snippet in `USER CODE BEGIN 0` section in **main.c** file:
+
 ```c
 static uint16_t Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2,
 		uint16_t BufferLength) {
@@ -109,6 +110,6 @@ void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
 
 ##Consumption
 
-Expected consumption under STOP1 mode ** ~65 uA** when all SRAMs retained. During SPI data transfer there is current peaks with average consumption ** ~400 uA**.
+Expected consumption under STOP1 mode **~65 uA** when all SRAMs retained. During SPI data transfer there is current peaks with average consumption **~400 uA**.
 
 ![image](./img/consumption.png)
