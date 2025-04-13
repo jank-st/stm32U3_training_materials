@@ -48,28 +48,28 @@
       },
       {
         "name": "Introduction",
-        "path": "/standby",
-        "file": "SB_intro.md"
+        "path": "/spi",
+        "file": "spi_intro.md"
       },
       {
         "name": "CubeMX",
-        "path": "/standby",
-        "file": "SB_cubemx.md"
+        "path": "/spi",
+        "file": "spi_cubemx.md"
       },
       {
         "name": "CubeIDE",
-        "path": "/standby",
-        "file": "SB_cubeide.md"
+        "path": "/spi",
+        "file": "spi_cubeide.md"
       },
       {
         "name": "Create Project",
-        "path": "/standby",
-        "file": "SB_project.md"
+        "path": "/spi",
+        "file": "spi_project.md"
       },
       {
         "name": "Measure Consumption",
-        "path": "/standby",
-        "file": "SB_consumption.md"
+        "path": "/spi",
+        "file": "spi_consumption.md"
       },
       {
         "name": "ADC Theory",
@@ -178,32 +178,32 @@
     },
     {
       "type": "Folder",
-      "name": "STANDBY HANDS-ON",
+      "name": "Autonomous SPI HANDS-ON",
       "children": [
         {
           "type": "File",
           "name": "1. Introduction",
-          "file": "SB_intro.md"
+          "file": "spi_intro.md"
         },
         {
           "type": "File",
           "name": "2. Create Project",
-          "file": "SB_project.md"
+          "file": "spi_project.md"
         },
         {
           "type": "File",
           "name": "3. CubeMX",
-          "file": "SB_cubemx.md"
+          "file": "spi_cubemx.md"
         },
         {
           "type": "File",
           "name": "4. CubeIDE",
-          "file": "SB_cubeide.md"
+          "file": "spi_cubeide.md"
         },
         {
           "type": "File",
           "name": "5. Measure Consumption",
-          "file": "SB_consumption.md"
+          "file": "spi_consumption.md"
         }
       ]
     },

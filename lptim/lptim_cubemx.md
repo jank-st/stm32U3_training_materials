@@ -43,11 +43,6 @@ Kernel clock will be selected LSE 32 768 Hz and requested PWM signal is 100 Hz
     
 ![image](./img/clock.png)
 
-# Advanced Settings
-- Do not generate Function Call for **ADC1, I2C1, TSC, USART2, USB** as it's not needed for LCD hands on.
-
-![image](./img/advanced_settings.png)
-
 # Project Manager
 Project is now ready for generation!
 
