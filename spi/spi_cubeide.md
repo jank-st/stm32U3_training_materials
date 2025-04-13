@@ -3,32 +3,28 @@ Presentation
 ----!
 
 # CubeIDE
-- Open **CubeIDE** and related `Stop 3` project
+- Open **CubeIDE** and related `SPI Autonomous mode` project
 
 ![image](./img/open_project.png)
 
-# Flash linker script
-In hands-on we disable data retention in almost all SRAMs except partial 8kB region in SRAM2. To avoid any HardFault error or random values founded in variables a correct memory allocation must be defined in *linker script STM32U385RGTXQ_FLASH.ld*.
+# Initialization
+## System Initialization
+Reset backup domain and RTC wakeup timer.
 
-- Define RAM memory region only for `SRAM2`
+Copy paste following snippet in `USER CODE BEGIN Init` section in **main.c** file:
 
 ```c
-MEMORY
-{
-  RAM    (xrw)    : ORIGIN = 0x20030000,   LENGTH = 8K
-  FLASH    (rx)    : ORIGIN = 0x08000000,   LENGTH = 1024K
-}
+/*Reset backup domain and RTC wakeup timer*/
+  __HAL_RCC_PWR_CLK_ENABLE();
+  HAL_PWR_EnableBkUpAccess();
+  __HAL_RCC_BACKUPRESET_FORCE();
+  while (__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY))
+		;
+  __HAL_RCC_BACKUPRESET_RELEASE();
 ```
-<p> </p>
-**Note** in standard application with wider use of power modes and peripheral you might need to place buffers and DMA handlers in dedicated SRAM2 section by using `attribute` 
 
-e.g. `uint32_t variable __attribute__((section(".sram2")));`
-
-
-# Initialization
-
-## System Initialization
-Enable SMPS as core regulator instead of LDO
+Enable SMPS as core regulator instead of LDO. 
+And disable clock of all unused peripherals under STOPx mode, reduce consumption due to presence of bus clock.
 
 Copy paste following snippet in `USER CODE BEGIN SysInit` section in **main.c** file:
 
@@ -38,52 +34,81 @@ Copy paste following snippet in `USER CODE BEGIN SysInit` section in **main.c** 
   {
 	  Error_Handler();
   }
+
+  /*Clock gating of all unused peripherals under STOPx mode, reduce consumption due to presence of bus clock*/
+  __HAL_RCC_GPIOA_CLK_STOP_DISABLE();
+  __HAL_RCC_GPIOC_CLK_STOP_DISABLE();
+  __HAL_RCC_SRAM2_CLK_STOP_DISABLE();
 ```
 
-## Configuration for STOPx mode
+Delete or comment `HAL_RTCEx_SetWakeUpTimer` called in `MX_RTC_Init()`.
+```c
+  /** Enable the WakeUp
+  */
+ // not here
+```
+
+# Application
+Prepare DMA transfers and buffers. Disable all interrupt from DMA to prevent wake up. 
+In real application this may differ or keep enabled DMA error flag at least.
+SPI communication will be triggered after 2s in STOP1 mode.
+
 Copy paste following snippet in `USER CODE BEGIN 2` section in **main.c** file:
 
 ```c
-/*Flash in power down mode during Stop mode - by default after reset */
-HAL_PWREx_DisableFlashFastWakeUp();
+/*Start the Full Duplex Communication process*/
+if (HAL_SPI_TransmitReceive_DMA(&hspi1, (uint8_t*) aTxBuffer,(uint8_t*) aRxBuffer, BUFFERSIZE) != HAL_OK) {
+  		/* Transfer error in transmission process */
+  Error_Handler();
+}
+  
+/*Disable all interrupt to prevent wakeup from STOP mode after DMA transfer*/
+__HAL_DMA_DISABLE_IT(&handle_GPDMA1_Channel7, (DMA_IT_TC | DMA_IT_HT | DMA_IT_DTE | DMA_IT_ULE | DMA_IT_USE | DMA_IT_TO));
+__HAL_DMA_DISABLE_IT(&handle_GPDMA1_Channel6, (DMA_IT_TC | DMA_IT_HT | DMA_IT_DTE | DMA_IT_ULE | DMA_IT_USE | DMA_IT_TO));
 
-/*Reduce SRAM2 retention in Stop mode to 8 kB*/
-HAL_PWREx_DisableRAMsContentStopRetention(PWR_SRAM2_PAGE2_STOP_RETENTION); // reduction -600nA
-HAL_PWREx_DisableRAMsContentStopRetention(PWR_SRAM2_PAGE3_STOP_RETENTION);
-HAL_PWREx_DisableRAMsContentStopRetention(PWR_FDCAN_USB_STOP_RETENTION);
-HAL_PWREx_DisableRAMsContentStopRetention(PWR_PKA_STOP_RETENTION);
-
-/*Put full SRAM1 in power down mode*/
-HAL_PWREx_EnableRAMsPowerDown(PWR_SRAM1_POWERDOWN); // reduction - 500nA
-
-/* Configure RTC wake up source for STop3 mode - RM Table 78. PWR wake-up source selection IN*/
-HAL_PWR_EnableWakeUpLine(PWR_WAKEUP_LINE7, PWR_WAKEUP_SELECT_3, PWR_WAKEUP_POLARITY_HIGH);
+/*for show-case transfer data after 2s in STOP mode*/
+if (HAL_RTCEx_SetWakeUpTimer(&hrtc, 1, RTC_WAKEUPCLOCK_CK_SPRE_16BITS) != HAL_OK)
+{
+  Error_Handler();
+}
+  
+/*SPI in autonomous mode operated down to STOP1 mode*/
+HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP1, PWR_STOPENTRY_WFI);
 ```
 
-# STOPx mode
-Enter in Stop3 mode by **__WFI()** instruction, clear all pending flags verify consumption and periodic wakeup sequence. Perform power on reset if target consumption is not achieved.
+# Check functionality
 
-Copy paste following snippet in `while(1) loop` section in **main.c** file:
+## buffer received??
+Now data are transferred. Verify them by user button push connected to exti line and interrupt wakes uo device from STOP1 mode.
+Called fucntion in exti callback compare known transmit buffer with received one. If all bytes matches USER LED switches on.
 
+Copy paste following snippet in `USER CODE BEGIN 0` section in **main.c** file:
 ```c
-/*Clear all wakeup source flags*/
-__HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
+static uint16_t Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2,
+		uint16_t BufferLength) {
+	while (BufferLength--) {
+		if ((*pBuffer1) != *pBuffer2) {
+			return BufferLength;
+		}
+		pBuffer1++;
+		pBuffer2++;
+	}
 
-/* Enter STOP 3 mode */
-HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
+	return 0;
+}
+
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
+{
+	/*Compare the sent and received buffers*/
+	if (Buffercmp((uint8_t*) aTxBuffer, (uint8_t*) aRxBuffer, BUFFERSIZE) == 0) {
+		/* RX Buffer OK */
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	}
+}
 ```
 
-## Debug in STOPx mode
-In case when debug in LP modes is required. Due to fact bus is clocked the internal SysTick must be suspend - 1 ms interrupt would cause exit from Stop mode.
+##Consumption
 
-Copy paste following snippet in `while(1) loop` section in **main.c** file:
+Expected consumption under STOP1 mode ** ~65 uA** when all SRAMs retained. During SPI data transfer there is current peaks with average consumption ** ~400 uA**.
 
-```c
-HAL_SuspendTick();
-/*Clear all wakeup source flags*/
-__HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
-
-/* Enter STOP 3 mode */
-HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
-HAL_ResumeTick();
-```
+![image](./img/consumption.png)

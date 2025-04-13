@@ -67,11 +67,6 @@
         "file": "spi_project.md"
       },
       {
-        "name": "Measure Consumption",
-        "path": "/spi",
-        "file": "spi_consumption.md"
-      },
-      {
         "name": "ADC Theory",
         "path": "/adc",
         "file": "adc_theory.md"
@@ -178,7 +173,7 @@
     },
     {
       "type": "Folder",
-      "name": "Autonomous SPI HANDS-ON",
+      "name": "AUTONOMOUS SPI HANDS-ON",
       "children": [
         {
           "type": "File",
@@ -199,11 +194,6 @@
           "type": "File",
           "name": "4. CubeIDE",
           "file": "spi_cubeide.md"
-        },
-        {
-          "type": "File",
-          "name": "5. Measure Consumption",
-          "file": "spi_consumption.md"
         }
       ]
     },

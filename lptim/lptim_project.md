@@ -1,25 +1,13 @@
 ----!
 Presentation
 ----!
+
 # Open CubeMx or CubeMX plugin in CubeIDE
+Press **Access to MCU selector**
+<p> </p>
+![gif](./img/mcu_select.gif)
 
-<ainfo> 
-To avoid any IO LCD assignment configuration issue. Let open project related to **STM320U83C-DK** board where LCD pins are already assigned.
-</ainfo>
-
+# Select STM2U385RGT6 and Start Project
 <p> </p>
 
-Press **Access to BOARD SELECTOR**
-<p> </p>
-![gif](./img/board_select.png)
-
-# Select STM320U83C-DK and Start Project
-<p> </p>
-
-![image](./img/DK_project.png)
-
-# Initialize all peripherals
-- click **YES**
-<p> </p>
-
-![image](./img/default_mode.png)
+![image](./img/NU_project.png)

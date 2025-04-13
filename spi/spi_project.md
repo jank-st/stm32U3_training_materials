@@ -7,7 +7,7 @@ Press **Access to MCU selector**
 <p> </p>
 ![gif](./img/mcu_select.gif)
 
-# Select STM2U83RCT6 and Start Project
+# Select STM2U385RGT6 and Start Project
 <p> </p>
 
 ![image](./img/NU_project.png)
