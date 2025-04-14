@@ -27,31 +27,10 @@ To clock RTC and LPUART by external low speed crystal, the LSE must be activated
 
 ![image](./img/RTC.png)
 
-# Low Power UART
-- LPUART1 is connecetd to STlink via PA2/3 pins and acts as Virtual Comport
-
-- Select **LPUART1** instance
-  
-- Configure `Asynchronous mode`
-
-- Remap TX/RX to `PA2/3` *(hold CTRL + left mouse click)*
-
-- `Baudrate` = 9600​
-
-- `Enable FIFO mode`​
-  - TxFIFO Th. = Empty​
-  - RXFIFO Th. = Full
-
-- Enable `USART3 + LPUART1 global interrupt` under NVIC tab
-
-![image](./img/LPUART.png)
-
 # Clock Configuration
-- Change **MSI** to `1 MHz` as `System Clock`
+- Change **MSIS** to `96/2 MHz` as `System Clock`
   
-- Select **LSE** as source for `RTC/LCD` to be able active in down to Stop2 mode
-
-- Select **LSE** as source for `LPUART1`
+- Select **LSE** as source for `RTC` 
 <p> </p>
 
 ![image](./img/clock.png)
@@ -63,5 +42,4 @@ Project is now ready for generation!
 
 - Write project name and `Generate Code`
   
-![image](./img/generate_project.png)
   

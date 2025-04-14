@@ -4,10 +4,10 @@ Presentation
 #  Scan ADC
 
 We will create a sequence to convert two channels:
-![image](./img/adc_scan.png)
-<p> </p>
 
-We will add a new channel to our regular sequence.
+![image](./img/adc_scan.png)
+
+<p> </p>
 
 #  CubeMX
 

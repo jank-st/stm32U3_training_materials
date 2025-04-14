@@ -49,7 +49,7 @@ To clock RTC and LPUART by external low speed crystal, the LSE must be activated
 # Clock Configuration
 - Change **MSIS** to `96/2 MHz` as `System Clock`
   
-- Select **LSE** as source for `RTC/LCD` to be able active in down to Stop2 mode
+- Select **LSE** as source for `RTC` 
 
 - Select 3MHz **MSIK/8** as source for `LPUART1`
 <p> </p>
@@ -63,5 +63,4 @@ Project is now ready for generation!
 
 - Write project name and `Generate Code`
   
-![image](./img/generate_project.png)
   

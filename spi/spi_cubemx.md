@@ -92,11 +92,11 @@ To clock RTC and LPUART by external low speed crystal, the LSE must be activated
 DMA Interrupt under **NVIC** instance are enabled by default. It can be kept, however in our example it's not used.
 
 # Clock Configuration
-- Change **MSI** to `1 MHz` as `System Clock`
+- Change **MSIS** to `96/2 MHz` as `System Clock`
   
-- Select **LSE** as source for `RTC/LCD` to be able active in down to Stop2 mode
+- Select **LSE** as source for `RTC` 
 
-- Select **LSE** as source for `LPUART1`
+- Select 3MHz **MSIK/8** as source for `SPI1`
 <p> </p>
 
 ![image](./img/clock.png)

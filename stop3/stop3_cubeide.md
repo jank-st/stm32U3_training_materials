@@ -72,6 +72,7 @@ __HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
 /* Enter STOP 3 mode */
 HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
 ```
+<p> </p>
 
 ## Debug in STOPx mode
 In case when debug in LP modes is required. Due to fact bus is clocked the internal SysTick must be suspend - 1 ms interrupt would cause exit from Stop mode.
