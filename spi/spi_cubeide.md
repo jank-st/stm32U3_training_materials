@@ -42,6 +42,7 @@ Copy paste following snippet in `USER CODE BEGIN SysInit` section in **main.c** 
 ```
 
 Delete or comment `HAL_RTCEx_SetWakeUpTimer` called in `MX_RTC_Init()`.
+
 ```c
   /** Enable the WakeUp
   */
@@ -78,9 +79,9 @@ HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP1, PWR_STOPENTRY_WFI);
 
 # Check functionality
 
-## buffer received??
-Now data are transferred. Verify them by user button push connected to exti line and interrupt wakes uo device from STOP1 mode.
-Called fucntion in exti callback compare known transmit buffer with received one. If all bytes matches USER LED switches on.
+## Buffer received??
+Now data are transferred. Verify them by user button push connected to exti line and interrupt wakes up device from STOP1 mode.
+Called function in exti callback compare known transmit buffer with received one. If all bytes matches USER LED switches on.
 
 Copy paste following snippet in `USER CODE BEGIN 0` section in **main.c** file:
 
@@ -110,6 +111,7 @@ void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
 
 ##Consumption
 
-Expected consumption under STOP1 mode **~65 uA** when all SRAMs retained. During SPI data transfer there is current peaks with average consumption **~400 uA**.
+Expected consumption under STOP1 mode **~65 uA** when all SRAMs retained. 
+During SPI data transfer there is current peaks with average consumption **~400 uA**.
 
 ![image](./img/consumption.png)

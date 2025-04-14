@@ -4,8 +4,8 @@ Presentation
 #  Scan ADC
 
 We will create a sequence to convert two channels:
-![alt text](./img/1.svg)
-![alt text](./img/2.svg)
+![image](./img/adc_scan.png)
+<p> </p>
 
 We will add a new channel to our regular sequence.
 

@@ -1,21 +1,19 @@
-# Liquid Crystal Display Controller
-- Create simple example from scratch
-- After hands on you be able to activate any segment on LCD
-- Coding based on HAL library
-- No BSP library usage
-- STM32U083C-DK board
+# PWM Generation in low power
+- Example focusing on LPTIM PWM generation
+- LPTIM clocked from LSE, min. output pwm frequency is then 16 384 Hz.
 
 ## Prerequisites
 - Software:
-  - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)** from version 6.11.0
-  - **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)** from version 1.15.1
-  - **[STM32U0 Cube library](https://www.st.com/en/embedded-software/stm32cubeu0.html)** from version 1.0.0
+  - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)** from version 6.14
+  - **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)** from version 1.17
+  - **[STM32U3 Cube library](https://www.st.com/en/embedded-software/stm32cubeu3.html)** from version 1.1
   
 - Hardware:
-  - **USB-C** cable 
-  - **[STM32U083C-DK](https://www.st.com/en/evaluation-tools/stm32u083c-dk.html)** board 
+  - 2x **USB-C** cable 
+  - **[NUCLEO-U385RG](https://www.st.com/en/evaluation-tools/nucleo-u385rg-q.html)** board 
+  - A-meter or **[STLink-V3PWR](https://www.st.com/en/development-tools/stlink-v3pwr.html)** board 
 
 - Documentation:
-  - STM32U0 **[Reference Manual](https://www.st.com/resource/en/user_manual/um3261-stm32u0-series-safety-manual-stmicroelectronics.pdf)** 
-  - STM32U0 **[Data Sheet](https://www.st.com/resource/en/datasheet/stm32u083cc.pdf)**
-  - **[Schematic](https://www.st.com/resource/en/schematic_pack/mb1933-u083c-c02-schematic.pdf)** STM32U083C-DK
+  - STM32U3 **[Reference Manual](https://www.st.com/resource/en/reference_manual/rm0487-stm32u3-series-armbased-32bit-mcus-stmicroelectronics.pdf)** 
+  - STM32U3 **[Data Sheet](https://www.st.com/resource/en/datasheet/stm32u385rg.pdf)**
+  - **[Schematic](https://www.st.com/resource/en/schematic_pack/mb1841-u385rgq-e01-schematic.pdf)** NUCLEO-U083RC

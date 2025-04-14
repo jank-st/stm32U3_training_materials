@@ -1,29 +1,27 @@
-# Stop 3 and wake up from RTC
+# SPI communication in Autonomous mode
 
-- simple example to understand Stop 3 mode and wake up source from RTC
+Several peripherals support the autonomous mode which allows it to be functional and
+perform DMA transfers in Stop 0, Stop 1, and Stop 2 modes. Their interrupts wake up fromStop mode.
 
-Reduce time in Run mode as much as possible
+- Configuration of SPI1 Master Full-Duplex in Autonomous mode running down to Stop1 mode
+- Data are transferred to MISO by simple loopback and verify after exit of STOP1 by user LED
+- Exit Stop1 mode thanks to User button connected to exti13 line
+
+![image](./img/spiloop.png)
 <p> </p>
-
-![image](./img/fifo.png)
-<p> </p>
-
-- Focus on difference when communication is handled in polling mode or by HW with FIFO Tx/Rx buffer
-- Configuration of LPUART running down to Stop2 mode
-- Exit Stop2 mode thanks to RTC periodical Wakeup timer
 
 ## Prerequisites
 - Software:
-  - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)** from version 6.11.1
-  - **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)** from version 1.15.1
-  - **[STM32U0 Cube library](https://www.st.com/en/embedded-software/stm32cubeu0.html)** from version 1.0
+  - **[STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)** from version 6.14
+  - **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)** from version 1.17
+  - **[STM32U3 Cube library](https://www.st.com/en/embedded-software/stm32cubeu3.html)** from version 1.1
   
 - Hardware:
-  - **USB-C** cable 
-  - **[NUCLEO-U083RC](https://www.st.com/en/evaluation-tools/nucleo-u083rc.html)** board 
+  - 2x **USB-C** cable 
+  - **[NUCLEO-U385RG](https://www.st.com/en/evaluation-tools/nucleo-u385rg-q.html)** board 
+  - A-meter or **[STLink-V3PWR](https://www.st.com/en/development-tools/stlink-v3pwr.html)** board 
 
 - Documentation:
-  - STM32U0 **[Reference Manual](https://www.st.com/resource/en/user_manual/um3261-stm32u0-series-safety-manual-stmicroelectronics.pdf)** 
-  - STM32U0 **[Data Sheet](https://www.st.com/resource/en/datasheet/stm32u083cc.pdf)**
-  - **[Schematic](https://www.st.com/resource/en/schematic_pack/mb1932-u083rc-b01-schematic.pdf)** NUCLEO-U083RC
-
+  - STM32U3 **[Reference Manual](https://www.st.com/resource/en/reference_manual/rm0487-stm32u3-series-armbased-32bit-mcus-stmicroelectronics.pdf)** 
+  - STM32U3 **[Data Sheet](https://www.st.com/resource/en/datasheet/stm32u385rg.pdf)**
+  - **[Schematic](https://www.st.com/resource/en/schematic_pack/mb1841-u385rgq-e01-schematic.pdf)** NUCLEO-U083RC
