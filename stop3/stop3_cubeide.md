@@ -98,7 +98,7 @@ HAL_ResumeTick();
   - remove R40 (connection Slink IO and nRST line of mcu)
   - supply VDD_MCU domain **(left pin of JP4)**
   - unplug USB-C of STlink
-- Consumption profile is visualized in **[Cube Monitor PWR](https://www.st.com/en/development-tools/stm32cubemonpwr.html)**
+- consumption profile is visualized in **[Cube Monitor PWR](https://www.st.com/en/development-tools/stm32cubemonpwr.html)**
 
 <p> </p>
 ![image](./img/v3pwr_nucleo.png)

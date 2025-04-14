@@ -17,9 +17,9 @@ We will create a sequence to convert two channels:
 This will enable the scan mode. Now our sequence have 3 items
 
 3. Set Rank 1 `Channel` to **Vrefint channel*
-4. Set `Sampling time` to **46.5 ADC clock cycle**
+4. Set `Sampling time` to **46.5 ADC clock cycle** ~15.5 us @ 3MHz MSIK
 5. Set Rank 2 `Channel` to **Temperature sensor channel**
-6. Set `Sampling time` to **46.5 ADC clock cycle**
+6. Set `Sampling time` to **46.5 ADC clock cycle** ~15.5 us @ 3MHz MS
 
 To prevent of data overrun we enable `Low Power Auto Wait`.
 
@@ -27,7 +27,7 @@ To prevent of data overrun we enable `Low Power Auto Wait`.
 
 ![image](./img/config.png)
    
-8.  ADC kernel clock can be reduced to **24 MHZ**
+8.  ADC kernel clock can be reduced to MSIK/8 = **3 MHZ**
    
 ![image](./img/clkconfig.png) 
    
