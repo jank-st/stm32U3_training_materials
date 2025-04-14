@@ -88,3 +88,18 @@ __HAL_PWR_CLEAR_FLAG(PWR_WAKEUP_ALL_FLAG);
 HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP3, PWR_STOPENTRY_WFI);
 HAL_ResumeTick();
 ```
+
+- now project can be compiled and load in to device
+
+# Current consumption profile
+
+- tatic consumption can be measured by A-meter on JP4 for dynamic profile it's better use **STLink-V3PWR**
+- to avoid any leakage and measure correct values with STLink-V3PWR:
+  - remove R40 (connection Slink IO and nRST line of mcu)
+  - supply VDD_MCU domain **(left pin of JP4)**
+  - unplug USB-C of STlink
+- Consumption profile is visualized in **[Cube Monitor PWR](https://www.st.com/en/development-tools/stm32cubemonpwr.html)**
+
+<p> </p>
+![image](./img/v3pwr_nucleo.png)
+
