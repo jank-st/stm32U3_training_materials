@@ -99,6 +99,8 @@ HAL_ResumeTick();
   - supply VDD_MCU domain **(left pin of JP4)**
   - unplug USB-C of STlink
 - consumption profile is visualized in **[Cube Monitor PWR](https://www.st.com/en/development-tools/stm32cubemonpwr.html)**
+  
+Expected consumption **~2.5 uA**. Visible peaks are due to technology and requires for regulator refresh.
 
 <p> </p>
 ![image](./img/v3pwr_nucleo.png)

@@ -3,8 +3,7 @@ Presentation
 ----!
 
 # LSE crystal
-- Configured Low Speed Clock `Crystal/Ceramic Resonator`
-- Already done in default configuration 
+- Configure Low Speed Clock `Crystal/Ceramic Resonator`
 
 ![image](./img/LSE.png)
 
@@ -28,6 +27,7 @@ To clock LCD by external low speed crystal, the LSE must be activated within RTC
 - Select CH1 IO usage as `output`
 
 Kernel clock will be selected LSE 32 768 Hz and requested PWM signal is 100 Hz
+
 - period `327`
 
 - Capture Compare Selection `Compare on CH1 IO`
@@ -49,6 +49,4 @@ Project is now ready for generation!
 - Select **CubeIDE Toolchain**
 
 - Write project name and `Generate Code`
-  
-![image](./img/generate_project.png)
   

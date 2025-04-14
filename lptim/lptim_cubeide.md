@@ -3,7 +3,7 @@ Presentation
 ----!
 
 # CubeIDE
-- Open **CubeIDE** and related `Stop 3` project
+- Open **CubeIDE** and related `lptim pwm` project
 
 ![image](./img/open_project.png)
 
@@ -67,7 +67,7 @@ Copy paste following snippet in `USER CODE BEGIN 2` section in **main.c** file:
 HAL_LPTIM_PWM_Start(&hlptim1, LPTIM_CHANNEL_1);
 
 /* Enter STOP 2 mode */
-  HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP2, PWR_STOPENTRY_WFI);
+HAL_PWR_EnterSTOPMode(PWR_LOWPOWERMODE_STOP2, PWR_STOPENTRY_WFI);
 ```
 
 Now we can measure consumption to check PWM activity. Visual check can be done on user green LED. Simply connect together PC1 (36 pin of CN7) and PA5 (11 pin of CN10).

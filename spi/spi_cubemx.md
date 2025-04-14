@@ -3,8 +3,7 @@ Presentation
 ----!
 
 # LSE crystal and pinout
-- Configured Low Speed Clock `Crystal/Ceramic Resonator`
-- Already done in default configuration 
+- Configure Low Speed Clock `Crystal/Ceramic Resonator`
 
 - Select PC13 as `GPIO_EXTI13` for wake up device from Stop1 mode and validate transferred data.
   - external pull-down on PC13 is not populated, `enable internal pull-down`

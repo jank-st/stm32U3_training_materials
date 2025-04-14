@@ -3,8 +3,7 @@ Presentation
 ----!
 
 # LSE crystal
-- Configured Low Speed Clock `Crystal/Ceramic Resonator`
-- Already done in default configuration 
+- Configure Low Speed Clock `Crystal/Ceramic Resonator`
 
 ![image](./img/LSE.png)
 
