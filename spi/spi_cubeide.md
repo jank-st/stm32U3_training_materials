@@ -8,6 +8,23 @@ Presentation
 ![image](./img/open_project.png)
 
 # Initialization
+## Define
+
+Copy paste following snippet in `USER CODE BEGIN PD` section in **main.c** file:
+
+```c
+#define BUFFERSIZE	sizeof(aTxBuffer)
+```
+
+## Variables
+Copy paste following snippet in `USER CODE BEGIN PV` section in **main.c** file:
+
+```c
+uint8_t aTxBuffer[] =
+		"** SPI Message ******** SPI Message ******** SPI Message ******** SPI Message ******** SPI Message ******** SPI Message";
+
+static uint8_t aRxBuffer[BUFFERSIZE];
+```
 ## System Initialization
 Reset backup domain and RTC wakeup timer.
 
@@ -108,6 +125,10 @@ void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
 	}
 }
 ```
+
+Do not forget to connect together SPI MOSI and MISO pin CN10 pin 13/15 by available jumper or wire.
+
+![image](./img/NU_loop.png)
 
 ##Consumption
 
